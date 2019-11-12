@@ -70,6 +70,42 @@ describe('markdown-it-link-attributes', function () {
     expect(result).to.contain('<a href="#anchor">link</a>')
   })
 
+  it('allows custom attributes to be added to link', function () {
+    this.md.use(linkAttributes, {
+      attrs: {
+        target: '_blank'
+      }
+    })
+
+    var result = this.md.render('[link](https://example.com|aria-labelledBy=some-id)')
+    expect(result).to.contain('<a href="https://example.com" aria-labelledBy="some-id" target="_blank">link</a>')
+  })
+
+  it('applies "true" to custom attributes with no value', function () {
+    this.md.use(linkAttributes, {
+      attrs: {
+        target: '_blank'
+      }
+    })
+
+    var result = this.md.render('[link](https://example.com|hidden)')
+    expect(result).to.contain('<a href="https://example.com" hidden="true" target="_blank">link</a>')
+  })
+
+  it('does not apply custom attributes to any other links', function () {
+    this.md.use(linkAttributes, {
+      attrs: {
+        target: '_blank'
+      }
+    })
+
+    var link1 = '[link 1](https://example.com|aria-labelledBy=some-id|hidden)'
+    var link2 = '[link 2](https://example.com)'
+    var result = this.md.render(link1 + link2)
+    expect(result).to.contain('<a href="https://example.com" aria-labelledBy="some-id" hidden="true" target="_blank">link 1</a>')
+    expect(result).to.contain('<a href="https://example.com" target="_blank">link 2</a>')
+  })
+
   it('allows multiple rules', function () {
     this.md.use(linkAttributes, [{
       pattern: /^https:/,

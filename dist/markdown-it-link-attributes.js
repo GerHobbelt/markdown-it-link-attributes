@@ -40,6 +40,35 @@ function applyAttributes (idx, tokens, attributes) {
   })
 }
 
+function applyCustomAttributes (token) {
+  if (token.type !== 'link_open') {
+    return
+  }
+
+  // split the attributes into an array
+  var attrs = decodeURI(token.attrs[0][1]).split('|')
+
+  // extract the actual href and assign it to the token
+  var href = attrs.shift()
+  token.attrs[0][1] = href
+
+  // create a map of all the custom attributes
+  var custom = new Map()
+  attrs.forEach(function (attr) {
+    if (attr.indexOf('=') > -1) {
+      var data = attr.split('=')
+      custom.set(data[0], data[1])
+    } else {
+      custom.set(attr, true)
+    }
+  })
+
+  // assign the custom attributes to the token
+  custom.forEach(function (value, key) {
+    token.attrs.push([key, value])
+  })
+}
+
 function markdownitLinkAttributes (md, configs) {
   if (!configs) {
     configs = []
@@ -54,6 +83,9 @@ function markdownitLinkAttributes (md, configs) {
   md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
     var config = findFirstMatchingConfig(tokens[idx], configs)
     var attributes = config && config.attrs
+
+    // add any link specific attributes before applying global ones
+    tokens.forEach(applyCustomAttributes)
 
     if (attributes) {
       applyAttributes(idx, tokens, attributes)
