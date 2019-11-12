@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node tasks/build.js && npm run minify",
     "minify": "uglifyjs dist/markdown-it-link-attributes.js > dist/markdown-it-link-attributes.min.js",
-    "lint": "standard | snazzy",
+    "lint": "standard --fix | snazzy",
     "pretest": "npm run lint && npm run build",
     "test": "mocha",
     "prepublishOnly": "npm run build"
@@ -31,6 +31,7 @@
     "chai": "^4.1.2",
     "chalk": "^2.1.0",
     "check-ecmascript-version-compatibility": "^0.1.1",
+    "markdown-it": "^10.0.0",
     "mocha": "^6.2.1",
     "rimraf": "^3.0.0",
     "sinon": "^7.5.0",
