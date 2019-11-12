@@ -2,6 +2,26 @@
 
 > Link attributes plugin for [markdown-it](https://github.com/markdown-it/markdown-it) markdown parser.
 
+## Forked version
+
+This is a forked version of [markdown-it-link-attributes](https://github.com/crookedneighbor/markdown-it-link-attributes) that allows for custom attributes to be added to individual links.
+
+```markdown
+[standard link](https://github.com)
+
+[link with custom attributes](https://github.com|aria-describedBy=some-id|hidden)
+```
+
+Result:
+
+```html
+<p><a href="https://github.com">standard link</a></p>
+
+<p><a href="https://github.com" aria-describedBy="some-id" hidden="true">link with custom attributes</a></p>
+```
+
+These transformations are applied before any changes applied by the original plugin.
+
 ## Install
 
 node.js, browser:
