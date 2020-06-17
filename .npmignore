@@ -1,6 +1,7 @@
-test
-dist
+/.github
+support/
+.nyc_output
+coverage/
+Makefile
+.*
 tasks
-examples
-bower.json
-.mversionrc

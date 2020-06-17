@@ -2,58 +2,49 @@
   "name": "@gerhobbelt/markdown-it-link-attributes",
   "version": "1.0.0-1",
   "description": "A markdown-it plugin to configure the attributes for links",
-  "main": "index.js",
-  "scripts": {
-    "build": "node tasks/build.js && npm run minify",
-    "minify": "uglifyjs dist/markdown-it-link-attributes.js > dist/markdown-it-link-attributes.min.js",
-    "lint": "standard | snazzy",
-    "test": "npm run lint && mocha",
-    "pub": "npm publish --access public"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/crookedneighbor/markdown-it-link-attributes"
-  },
   "keywords": [
     "markdown",
     "markdown-it",
     "markdown-it-plugin"
   ],
   "author": "Blade Barringer <blade@crookedneighbor.com>",
+  "repository": "crookedneighbor/markdown-it-link-attributes",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/crookedneighbor/markdown-it-link-attributes"
+  "source": "index.js",
+  "main": "dist/markdownItLinkAttr.js",
+  "module": "dist/markdownItLinkAttr.mjs",
+  "engines": {
+    "node": ">=10"
   },
-  "homepage": "https://github.com/crookedneighbor/markdown-it-link-attributes",
+  "scripts": {
+    "build": "make",
+    "test": "make test",
+    "todo": "make todo",
+    "clean": "make clean",
+    "superclean": "make superclean",
+    "doc": "make doc",
+    "lint": "make lint",
+    "lintfix": "make lintfix",
+    "cov": "make report-coverage",
+    "pub": "npm publish --access public"
+  },
   "devDependencies": {
-    "browserify": "^16.5.0",
-    "chai": "^4.2.0",
-    "chalk": "^3.0.0",
-    "mocha": "^6.2.2",
-    "rimraf": "^3.0.0",
-    "sinon": "^7.5.0",
-    "sinon-chai": "^3.3.0",
-    "snazzy": "^8.0.0",
-    "standard": "^14.3.1",
-    "uglify-js": "^3.6.8"
+    "@gerhobbelt/markdown-it": "11.0.0-36",
+    "@gerhobbelt/markdown-it-testgen": "0.1.6-7",
+    "@gerhobbelt/prepend-header": "1.0.8-3",
+    "camelcase": "6.0.0",
+    "chai": "4.2.0",
+    "cross-env": "7.0.2",
+    "eslint": "7.2.0",
+    "microbundle": "0.12.1",
+    "mocha": "8.0.1",
+    "nyc": "15.1.0",
+    "sinon": "^9.0.2",
+    "sinon-chai": "^3.5.0"
   },
-  "standard": {
-    "globals": [
-      "after",
-      "afterEach",
-      "before",
-      "beforeEach",
-      "context",
-      "describe",
-      "expect",
-      "it",
-      "sandbox",
-      "xdescribe",
-      "xcontext",
-      "xit"
-    ],
-    "ignore": [
-      "dist/"
-    ]
-  }
+  "reporter": [
+    "lcov",
+    "text",
+    "text-summary"
+  ]
 }

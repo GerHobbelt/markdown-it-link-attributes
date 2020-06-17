@@ -1,5 +1,9 @@
 # markdown-it-link-attributes
 
+[![Build Status](https://img.shields.io/travis/GerHobbelt/markdown-it-link-attributes/master.svg?style=flat)](https://travis-ci.org/GerHobbelt/markdown-it-link-attributes)
+[![NPM version](https://img.shields.io/npm/v/@gerhobbelt/markdown-it-link-attributes.svg?style=flat)](https://www.npmjs.org/package/@gerhobbelt/markdown-it-link-attributes)
+[![Coverage Status](https://img.shields.io/coveralls/GerHobbelt/markdown-it-link-attributes/master.svg?style=flat)](https://coveralls.io/r/GerHobbelt/markdown-it-link-attributes?branch=master)
+
 > Link attributes plugin for [markdown-it](https://github.com/markdown-it/markdown-it) markdown parser.
 
 ## Install
